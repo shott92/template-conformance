@@ -1,8 +1,8 @@
 import logging
 
-from template_compliance.ears_template_conformance import EARSParser
-from template_compliance.rupp_template_conformance import RuppParser
-from template_compliance.agile_user_story_conformance import AgileUserStoryParser
+from .ears_template_conformance import EARSParser
+from .rupp_template_conformance import RuppParser
+from .agile_user_story_conformance import AgileUserStoryParser
 
 logging.basicConfig(level=logging.DEBUG)
 
