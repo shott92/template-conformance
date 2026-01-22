@@ -2,3 +2,5 @@ flask
 flask-restful
 marshmallow
 spacy
+python-docx
+openpyxl

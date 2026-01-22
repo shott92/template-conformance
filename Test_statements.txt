@@ -1,0 +1,9 @@
+The system shall display the welcome message.
+When the user presses the button, the system shall shut down.
+If the battery level drops below 10%, then the system shall activate power saving mode.
+While the aircraft is in flight, the system shall disable the landing gear lever.
+Where the GPS module is installed, the system shall record location data.
+The system should be fast.
+The user interface must be user friendly and easy to use.
+Calculated values are displayed by the system.
+The system shall do X and Y.

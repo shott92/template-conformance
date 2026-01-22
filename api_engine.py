@@ -36,14 +36,14 @@ class RequirementConformance(Resource):
         #print(requirements)
         if requirements:
             if template == 'rupp':
-                tagged_requirements_list = check_rupp_template_compliance(requirements)
-                return tagged_requirements_list
+                results = check_rupp_template_compliance(requirements)
             elif template == 'ears':
-                tagged_requirements_list = check_ears_template_compliance(requirements)
-                return tagged_requirements_list
+                results = check_ears_template_compliance(requirements)
             elif template == 'agile':
-                tagged_requirements_list = check_agile_story_template_conformance(requirements)
-                return tagged_requirements_list
+                results = check_agile_story_template_conformance(requirements)
+            
+            # Simple return, Flask-Restful handles list of dicts serialization
+            return results
         else:
             return {'message': 'Empty requirement(s)'}, 400
 

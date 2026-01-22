@@ -12,7 +12,8 @@ def test_ears():
     req = "The S&T shall present to the SOT operator the EDTM anomalies."
     result = check_ears_template_compliance(req)
     print(result)
-    assert "<True>" in result[0]
+    assert result[0]['conformance'] == True
+    assert result[0]['type'] == 'ubiquitous' # EARS Ubiquitous type
 
 def test_rupp():
     print("\nTesting Rupp...")
@@ -28,10 +29,32 @@ def test_agile():
     req = "As a user, I want to login so that I can access my dashboard."
     result = check_agile_story_template_conformance(req)
     print(result)
-    assert "<True>" in result[0]
+    assert result[0]['conformance'] == True
+
+def test_quality():
+    print("\nTesting Quality Analysis...")
+    # 1. Vague word
+    req1 = "The system shall be user-friendly."
+    res1 = check_ears_template_compliance(req1)
+    print(f"Vague Test: {res1[0]['quality_issues']}")
+    assert "user-friendly" in res1[0]['quality_issues']
+    
+    # 2. Compound/Not Atomic (in System Response)
+    req2 = "The system shall display the data and shutdown."
+    # Note: simple 'and' detection might trigger
+    res2 = check_ears_template_compliance(req2)
+    print(f"Atomic Test: {res2[0]['quality_issues']}")
+    assert "Conjunction" in res2[0]['quality_issues']
+    
+    # 3. Placeholder
+    req3 = "The system shall value <value>."
+    res3 = check_ears_template_compliance(req3)
+    print(f"Placeholder Test: {res3[0]['quality_issues']}")
+    assert "placeholder" in res3[0]['quality_issues'] or "<value>" in res3[0]['quality_issues']
 
 if __name__ == "__main__":
     test_ears()
     test_rupp()
     test_agile()
+    test_quality()
     print("\nVerification Complete.")

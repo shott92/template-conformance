@@ -1,0 +1,10 @@
+Original Requirement,Conforming?,Tagged Output
+The system shall display the welcome message.,True,<True>The system shall display the welcome message.</True>
+"When the user presses the button, the system shall shut down.",True,"<True>When the user presses the button, the system shall shut down.</True>"
+"If the battery level drops below 10%, then the system shall activate power saving mode.",True,"<True>If the battery level drops below 10%, then the system shall activate power saving mode.</True>"
+"While the aircraft is in flight, the system shall disable the landing gear lever.",True,"<True>While the aircraft is in flight, the system shall disable the landing gear lever.</True>"
+"Where the GPS module is installed, the system shall record location data.",True,"<True>Where the GPS module is installed, the system shall record location data.</True>"
+The system should be fast.,True,<True>The system should be fast.</True>
+The user interface must be user friendly and easy to use.,True,<True>The user interface must be user friendly and easy to use.</True>
+Calculated values are displayed by the system.,False,<False>Calculated values are displayed by the system.</False>
+The system shall do X and Y.,True,<True>The system shall do X and Y.</True>
