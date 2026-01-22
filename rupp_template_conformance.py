@@ -39,6 +39,19 @@ class RuppParser:
         self.conditional_type = None
         self.template_conformance = None
 
+    def analyze(self):
+        self.parse_head()
+        self.parse_modal_vp()
+        self.parse_system_name()
+        self.parse_anchor()
+        self.is_valid_sentence()
+        self.parse_condition()
+        self.parse_object()
+        self.parse_conformant_segment()
+        self.parse_details()
+        self.parse_conditional_details()
+        self.parse_conformance()
+
     @staticmethod
     def first_parse(requirements):
         doc = nlp(requirements)
@@ -86,7 +99,7 @@ class RuppParser:
 
         if self.modal_vp:
             modal_location = self.modal_vp.i
-            if self.sent[modal_location+1-self.sent.start].pos_ is not 'VERB':
+            if self.sent[modal_location+1-self.sent.start].pos_ != 'VERB':
                 #print('No verb immediately after modal')
                 logging.warning('No verb immediately after modal. Anchor not present.')
                 return
@@ -150,8 +163,9 @@ class RuppParser:
                 self.process = self.sent[modal_location-self.sent.start:verb_phrase_end.i+1-self.sent.start]
                 self.requirement = self.process
 
+            anchor_end = modal_location
             for token in self.sent[modal_location-self.sent.start :]:
-                if token.pos_ == 'VERB':
+                if token.pos_ == 'VERB' or token.pos_ == 'AUX':
                     anchor_end = token.i
                 else:
                     break

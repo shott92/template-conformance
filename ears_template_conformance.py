@@ -40,6 +40,20 @@ class EARSParser:
         self.conditional_details = []
 
         self.template_conformance = None
+    
+    def analyze(self):
+        self.parse_head()
+        self.parse_modal()
+        self.parse_system_name()
+        self.parse_anchor()
+        self.parse_system_response()
+        self.parse_valid_sentence()
+        self.parse_condition()
+        self.parse_pseudo_conformant_segment()
+        self.parse_details()
+        self.parse_conditional_details()
+        self.parse_conditional_type()
+        self.parse_template_conformance()
 
     @staticmethod
     def first_parse(requirements):
@@ -79,8 +93,10 @@ class EARSParser:
         if self.modal and self.system_name:
             sent_start = self.sent.start
             modal_position = self.modal.i-sent_start
+            vp_end = modal_position # Initialize to modal position
             for token in self.sent[modal_position:]:
-                if token.pos_ == 'VERB':
+                # Allow AUX (for modals) and VERB
+                if token.pos_ == 'VERB' or token.pos_ == 'AUX':
                     vp_end = token.i
                     #print(vp_end, token.text)
                 else:
@@ -93,8 +109,9 @@ class EARSParser:
         if self.modal:
             sent_start = self.sent.start
             modal_position = self.modal.i-sent_start
+            vp_end = modal_position
             for token in self.sent[modal_position : ]:
-                if token.pos_ == 'VERB':
+                if token.pos_ == 'VERB' or token.pos_ == 'AUX':
                     vp_end = token.i
                 else:
                     break

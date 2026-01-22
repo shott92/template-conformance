@@ -24,13 +24,16 @@ class AgileUserStoryParser:
         self.reason = None
         self.template_conformance = None
 
+    def analyze(self):
+        self.check_conformance()
+
     @staticmethod
     def first_parse(requirements):
         doc = nlp(requirements)
         return doc
 
     def check_conformance(self):
-        matcher.add("UserStory", None, user_story)
+        matcher.add("UserStory", [user_story])
         matches = matcher(self.sent.as_doc())
         #logging.debug(len(matches), matches)
         if matches:

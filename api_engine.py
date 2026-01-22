@@ -4,7 +4,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api
 from marshmallow import Schema, fields, ValidationError
 
-from template_compliance.template_conformance_core import check_rupp_template_compliance, check_ears_template_compliance, check_agile_story_template_conformance
+from template_conformance_core import check_rupp_template_compliance, check_ears_template_compliance, check_agile_story_template_conformance
 
 
 class TemplateConformanceSchema(Schema):
